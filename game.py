@@ -2,17 +2,22 @@
 Tic-tac-toe
 
 The program is a simple version of the game.
-In the class "Field" describes the events taking place on the playing field.
+In the class "Field" describes the events taking place
+on the playing field.
 """
 
 from tabulate import tabulate
 import random
 import copy
 
-# settings
-player_is_first = True  # If "True" the player goes first
-debug = False  # If "True" instead of empty cells, their numbers will be displayed
-space = " "  # What will be shown in empty cells, if "debug" is "False"
+# If "True" the player goes first
+player_is_first = True
+
+# If "True" instead of empty cells, their numbers will be displayed
+debug = False
+
+# What will be shown in empty cells, if "debug" is "False"
+space = " "
 
 
 class Field:
@@ -20,14 +25,15 @@ class Field:
 
     The basic logic of the game
 
-    "__init__" method takes the value of the cell selected by the player;
-    "adding" method adds an "X" to the selected cell and calls the "AI" method;
-    "AI" method imitates the opponent’s move;
-    "check" staticmethod checks if there is a winner:
+    "__init__" method takes the value of the cell selected by the player
+    "adding" method adds an "X" to the selected cell and calls the "AI"
+        method
+    "AI" method imitates the opponent’s move
+    "check" staticmethod checks if there is a winner
         takes "key" string argument:
-            if key is "win" the method returns True or False;
-            if key is "who" the method returns who is winner;
-    "show" staticmethod displays the game field;
+            if key is "win" the method returns True or False
+            if key is "who" the method returns who is winner
+    "show" staticmethod displays the game field
 
     """
     if debug:
@@ -87,7 +93,9 @@ class Field:
         index_row = random.choice(range(len(self.option)))
         index_col = random.choice(range(len(self.option[index_row])))
 
-        if self.option[index_row][index_col] != "0" and Field.cells[index_row][index_col] != "X" and \
+        if self.option[index_row][index_col] != "0" and \
+                Field.cells[index_row] \
+                        [index_col] != "X" and \
                 Field.cells[index_row][index_col] != "O":
             Field.cells[index_row][index_col] = "O"
         else:
@@ -98,30 +106,46 @@ class Field:
         win = False
         who = "Nobody"
 
-        if Field.cells[0][0] == Field.cells[0][1] == Field.cells[0][2] and Field.cells[0][1] != space:
+        if Field.cells[0][0] == Field.cells[0][1] == Field.cells[0][
+            2] and \
+                Field.cells[0][1] != space:
             win = True
             who = Field.cells[0][0]
-        if Field.cells[1][0] == Field.cells[1][1] == Field.cells[1][2] and Field.cells[1][1] != space:
+        if Field.cells[1][0] == Field.cells[1][1] == Field.cells[1][
+            2] and \
+                Field.cells[1][1] != space:
             win = True
             who = Field.cells[1][0]
-        if Field.cells[2][0] == Field.cells[2][1] == Field.cells[2][2] and Field.cells[2][1] != space:
+        if Field.cells[2][0] == Field.cells[2][1] == Field.cells[2][
+            2] and \
+                Field.cells[2][1] != space:
             win = True
             who = Field.cells[2][0]
 
-        if Field.cells[0][0] == Field.cells[1][0] == Field.cells[2][0] and Field.cells[1][0] != space:
+        if Field.cells[0][0] == Field.cells[1][0] == Field.cells[2][
+            0] and \
+                Field.cells[1][0] != space:
             win = True
             who = Field.cells[0][0]
-        if Field.cells[0][1] == Field.cells[1][1] == Field.cells[2][1] and Field.cells[1][1] != space:
+        if Field.cells[0][1] == Field.cells[1][1] == Field.cells[2][
+            1] and \
+                Field.cells[1][1] != space:
             win = True
             who = Field.cells[0][1]
-        if Field.cells[0][2] == Field.cells[1][2] == Field.cells[2][2] and Field.cells[1][2] != space:
+        if Field.cells[0][2] == Field.cells[1][2] == Field.cells[2][
+            2] and \
+                Field.cells[1][2] != space:
             win = True
             who = Field.cells[0][2]
 
-        if Field.cells[0][0] == Field.cells[1][1] == Field.cells[2][2] and Field.cells[1][1] != space:
+        if Field.cells[0][0] == Field.cells[1][1] == Field.cells[2][
+            2] and \
+                Field.cells[1][1] != space:
             win = True
             who = Field.cells[0][0]
-        if Field.cells[0][2] == Field.cells[1][1] == Field.cells[2][0] and Field.cells[1][1] != space:
+        if Field.cells[0][2] == Field.cells[1][1] == Field.cells[2][
+            0] and \
+                Field.cells[1][1] != space:
             win = True
             who = Field.cells[0][2]
 
@@ -150,7 +174,8 @@ Field.show()
 
 
 def run():
-    """The function calls the necessary class methods in the desired sequence for the game to work correctly"""
+    """The function calls the necessary class methods in the desired
+    sequence for the game to work correctly"""
     choise = ask()
     cell = Field(choise)
     Field.adding(cell, True)
